@@ -1,0 +1,31 @@
+<div>
+  <h3>Posts List</h3>
+  <hr />
+</div>
+
+<div>
+  <a [routerLink]="['/posts', 'add']">Add Post</a>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let post of posts$ | async">
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.description }}</td>
+      <td>
+        <a [routerLink]="['/posts','edit',post.id]" class="me-2">Update</a>
+        <a (click)="onDeletePost($event, post.id)" class="me-2" >Delete</a>
+        <a [routerLink]="['/posts','details',post.id]" >Detail</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
